@@ -30,6 +30,9 @@ pub enum QueryMsg {
         #[returns(Vec<Employee>)]
         QueryEmployees { owner:String },
 
+         #[returns(Vec<Employee>)]
+         QueryLeaves{ emp_id : u32},
+         
         
     }
     

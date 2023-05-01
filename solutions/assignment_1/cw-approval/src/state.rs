@@ -1,14 +1,15 @@
 use cw_storage_plus::Item;
 use schemars::JsonSchema;
 use serde::{Serialize , Deserialize};
-
+use cosmwasm_std::{storage , Addr};
+use cosmwasm_storage::Bucket;
 // use crate::msg::Announcement;
 
 #[derive(Debug , Serialize , Deserialize , Clone , PartialEq , Eq, JsonSchema)]
 
 
 pub struct LeaveRequest {
-    pub employee: String,
+    pub employee: u32,
     pub reason: String,
     pub approved: String,
     pub feedback: String,
@@ -33,6 +34,17 @@ pub struct State {
      
 }
 
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct LeaveBalance {
+    pub emp_id: String,
+    pub balances: Vec<u32>,
+}
+
+pub struct UpdateLeaveBalance {
+    pub emp_id : String,
+    pub leave_balance: u32,
+
+}
 
 // #[derive(Serialize , Deserialize)]
 // pub struct QueryResponses {
@@ -44,6 +56,8 @@ pub struct State {
 
 pub const OWNER: Item<String> = Item::new("Owner");
 
+
+pub const DATASTORE:Item<Addr> = Item::new("contract_storage");
 
 pub const STATE : Item<Vec<LeaveRequest>> = Item::new("STATE");
 

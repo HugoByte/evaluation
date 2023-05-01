@@ -1,8 +1,9 @@
 use cosmwasm_schema::{cw_serde, QueryResponses};
 use serde::{Deserialize, Serialize};
+use cosmwasm_std::Addr;
 
 
-use crate::state::LeaveRequest;
+use crate::state::{ LeaveRequest , leaveBalance } ;
 
 
 #[cw_serde]
@@ -13,20 +14,22 @@ pub struct InstantiateMsg {
   pub approved: String,
   pub feedback: String,
   pub owner:String,
-
+  pub contract_address : Addr
 }
 // pub enum Msg {
   
 // }
 
 #[cw_serde]
+
 pub enum Msg {
-    RequestLeave { reason: String },
-    ApproveLeave { employee: String, feedback: String },
-    RejectLeave { employee: String, feedback: String },
-    PostAnnouncement { announcement: String },
+  RequestLeave { emp_id: u32 , reason: String , leave_days: u32},
+  ApproveLeave { employee: u32, feedback: String },
+  RejectLeave { employee: u32, feedback: String },
+  PostAnnouncement { announcement: String },
 
 }
+
 
 
 #[cw_serde]

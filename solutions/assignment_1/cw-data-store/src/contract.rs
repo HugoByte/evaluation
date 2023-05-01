@@ -8,7 +8,7 @@ use cosmwasm_std::{
 
 use crate::error::ContractError;
 use crate::msg::{self, ExecuteMsg, InstantiateMsg, QueryMsg};
-use crate::state::{Employee, OWNER, STATE};
+use crate::state::{Employee, OWNER, STATE, self};
 
 /*
 // version info for migration info
@@ -171,6 +171,7 @@ pub fn execute(
                 .unwrap();
             Ok(Response::new())
         }
+
     }
 }
 
@@ -205,8 +206,16 @@ pub fn query(deps: Deps, _env: Env, msg: QueryMsg) -> StdResult<QueryResponse> {
             // let state = get_state(deps.storage)?;
             Ok(to_binary(&state).unwrap())
         }
+        QueryMsg::QueryLeaves{ emp_id }  => {
+            let state = STATE.load(deps.storage).unwrap();
+            let employee = state.iter().find(|e| e.emp_id.parse::<u32>().unwrap()  == emp_id).ok_or(ContractError::EmployeeNotFound {}).unwrap();
+            let response = to_binary(&employee.leave_balance)?;
+            Ok(response.into())
+        }
     }
-}
+      
+    }
+
 
 #[cfg(test)]
 mod tests {

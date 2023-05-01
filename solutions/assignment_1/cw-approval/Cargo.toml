@@ -48,6 +48,6 @@ cw2 = "1.0.1"
 schemars = "0.8.10"
 serde = { version = "1.0.145", default-features = false, features = ["derive"] }
 thiserror = { version = "1.0.31" }
-
+cw-data-store ={ path="../cw-data-store",features=["library"]}
 [dev-dependencies]
 cw-multi-test = "0.16.2"
