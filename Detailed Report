@@ -1,0 +1,98 @@
+Introduction:
+     This report presents the implementation of a basic blockchain data structure using C++. The 
+blockchain consists of blocks, each with unique hash and pointer to the previous block in the chain.
+Each block contains a list of transactions represented as a linked list.
+
+Blockchain Implementation:
+     Transaction Structure: A structure defining the properties of a transaction, including the 
+     Sender, Receiver and Amount.
+     
+     Block Structure: A structure defining the properties of a block, including a vector of 
+     transaction(Amount), the previous block's Hash (previoushash) and current hash (hash).
+     
+     Blockchain Class: A class representing the blockchain, which manages the chain of blocks and 
+     provide functionality to add new blocks(addBlock()) and validate the chain(validateChain()).
+     
+Functionality:
+
+     Initialization: The blockchain is initialized with a genesis block containing no transactions
+     and a hash value "0".
+     
+     Adding Blocks: The blockchain allows the addition of new blocks by providing a list of 
+     transactions. The new block's hash is calculated based on the previous block'c hash and it is
+     added to the chain.
+     
+     Validation: The blockchain includes a function to validate the integrity of the chain by 
+     verifying that each block's previous hash matches the hash of the previous block.
+     
+Security Implications: The use of blockchain for financial transactions offers several security
+benefits:
+
+     Immutability: Transactions added to the blockchain are difficult to tamper with, ensuring the 
+     integrity of the transaction history.
+     
+     Decentralization: The decentralized nature of blockchain networks enhances security by 
+     removing single points of failure and requiring consensus among multiple nodes.
+     
+     Cryptographic Security: Blockchain networks employ cryptographic algorithms for secure 
+     transaction verification, digital signatures, and tamper-evident record keeping.
+     
+     Transparency: Blockchain transactions are transparent, allowing for auditing and accountability.
+     
+Conclusion:
+     The implemented basic blockchain data structure in C++ provides a foundation for building
+more complex blockchain applications. The code demonstrates the creation of blocks, linking them
+together, and validating the chain. It serves as a starting point for further exploration and 
+development of blockchain systems.
+
+
+
+Code Explanation:
+
+1) Includes and Namespace - The necessary header files, 
+#include <iostream>
+#include <vector>
+#include <cstring>
+#include <cstdlib>
+#include <ctime>
+The code also uses the "std" namespace.
+
+2) Transaction Structure - The "Transaction" structure represents a single transaction in the 
+blockchain and the three members are Sender name (sender name), Receiver (receiver name) and 
+Amount(transaction amount).
+
+3) Block Structure - It represents a single transaction in th blockchain. It contains the hash of
+the current block (hash), hash of the previous block (previous block) and vector of transaction
+(transactions). The "Block" constructor initilizes these values by taking the transactions and 
+the previous hash as parameters. It also includes a helper function "generateRandomHash()" that 
+generates a random hash value for the block.
+
+4) Blockchain class - The "Blockchain" class manages the chain of blocks. It has a private members
+"chain", which is a vector of "Block" objects. 
+ 
+     Blockchain() - is the constructor that initializes the blockchain with a genesis block the first
+     block with no transactions and a hash value of 0.
+     
+     addBlock() - adds a new block to the chain. It takes a vector of transactions as input, 
+     calculates the previous block's hash, and creates a new block with the provided transactions 
+     and the previous hash. The new block is then added to the chain.
+     
+     validateChain() - validates the integrity of the blockchain by traversing the chain and checking 
+     if each block's previous hash matches the hash of the previous block. It returns "true" if the 
+     chain is valid and "false" otherwise.
+     
+     printChain() - prints the details of each block in the chain, including the both hash, previous
+     hash, and transactions.
+     
+5)Main Function:
+     In the "main()" function, the "srand()" function is used to seed the random number generator.
+     Thenm an instance of the "Blockchain" class is created.
+     
+     Some sample transaction("transactions1", "transactions2" and "transactions3") are created
+     as vectors of "Transaction" objects, representing two set of transactions. These transactions 
+     are added to the blockchain using the "addBlock()" function.
+     
+     Finally, the blockchain is printed using the "printChain()" function, and the validity of the 
+     blockchain is checked using the "validateChain()" function. The result is printed as "Yes" if 
+     the chain is valid and "No" otherwise.
+     
