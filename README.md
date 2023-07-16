@@ -1,2 +1,27 @@
 # evaluation
+# Introduction
+In this assignment, you will be using your knowledge of the C++ programming language to implement a simple blockchain. A blockchain is a digital ledger of transactions that is decentralized and secure. Each block in the chain contains a cryptographic hash of the previous block, along with the current transactions.
+
+# Requirements
+Implement a basic blockchain data structure in C++. The blockchain should consist of blocks, each with a unique hash and a pointer to the previous block in the chain.
+Each block should contain a list of transactions, represented as a linked list.
+Implement a function to add a new block to the chain. This function should take a list of transactions as input, calculate the hash of the previous block, and add the new block to the chain.
+Implement a function to validate the blockchain. This function should traverse the chain and verify that each block's hash matches the previous block's hash.
+Test your blockchain implementation by adding some transactions and validating the chain.
+Research and write a brief report on the security implications of using a blockchain for financial transactions.
+Submission Guidelines
+Fork this repository and create a new branch for your work.
+Create a folder with your name and place all your files inside it.
+Write all your code in C++ language.
+Include a README.md file explaining how to compile and run your code.
+Write a brief report on the security implications of using a blockchain for financial transactions and include it in your folder.
+Submit a pull request to the master branch of the original repository.
+
+# Evaluation
+Your assignment will be evaluated based on the following criteria:
+
+Correctness and completeness of the blockchain implementation
+Clarity and readability of the code
+Correctness and completeness of the validation function
+Quality and completeness of the report on blockchain security
 
