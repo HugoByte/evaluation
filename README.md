@@ -5,7 +5,7 @@ Blockchain Technology is a method of recording information under a decentralised
 
 Every transaction in a ledger is authorised by the digital signature of the owner which authenticates the transaction and safeguards from tampering. Hence, its highly secured.
 
-Blockchain network connects all the peer-to-peer network via internet on a blockchain platform like Ethereum and Solana where we can create DApps. Each and every transactional details is visible on all other user's device except their profile. When the user commit a transaction, it attains finality and it can't be changed by anyone. Once if anyone tries to tamper the network or any transaction, it applies to their network alone and all other devices remains unchanged. 
+Blockchain network connects all the peer-to-peer network via internet on a blockchain platform like Ethereum and Solana where we can create DApps. Each and every transactional details is visible on all other user's device except their profile. When the user commit a transaction, it attains finality and it can't be changed by anyone. Once if anyone tries to tamper the network or any transaction, it applies to their network alone and all other devices remains unchanged. This feature ensures the integrity of the data and prevents double spending, providing a high level of security and trust in Blockchain types and sustainability.
 
 # Structure of Blockchain:-
 
@@ -24,10 +24,27 @@ The Blockchain is able to record financial transactions as well as prperties, ca
 
 # Implementation of a simple Blockchain:-
 
-To begin with the code implementation,
-1) We have created a blockchain class and created an object for that.
-2) Create a vector to store transactions in a block using push_back() also we can add new blocks.
-3) Struct Transaction stores information of the sender, receiver, amount, timestamp.
+A simple Blockchain class is defined.
+
+1.Two essential structures are defined: Transaction and Block.
+Transaction: Represents a single transaction in the blockchain, with attributes for the sender, receiver, amount, and timestamp when the transaction occurred.
+Block: Represents a block in the blockchain, containing an index, timestamp, a vector of Transaction objects, a previous block's hash, and its own hash.
+
+2. Blockchain contains a private member variable chain, which is a vector of Block objects. The constructor initializes the chain with the genesis block (block with index 0 and empty transactions).
+
+4. The createGenesisBlock() method creates and returns the genesis block.
+
+5. The addBlock() method is used to add a new block to the blockchain. It takes a vector of transactions as input and creates a new block with the provided transactions, linking it to the last block in the chain.
+
+6. The validateChain() method iterates through the entire blockchain and checks if each block's hash matches the calculated hash and if the previous block's hash matches the stored previous hash. If any inconsistency is found, the method returns false, indicating that the blockchain is invalid. Otherwise, it returns true, indicating a valid blockchain.
+
+7. In the main() function, an instance of the Blockchain class named blockchain is created.
+
+8. Two blocks with different transactions are added to the blockchain using the addBlock() method.
+
+9. The validateChain() method is called to check the validity of the blockchain.
+
+10. The result of the validation is printed on the console.
 
 
 
