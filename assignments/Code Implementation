@@ -131,3 +131,77 @@ int main() {
 
     return 0;
 }
+
+
+/*
+
+OUTPUT:
+
+-------------------------------------------------
+Block #0
+-------------------------------------------------
+Timestamp: 1689491193
+
+Previous Hash: 0
+Hash: 572d4f397483c4bd
+
+
+-------------------------------------------------
+Block #1
+-------------------------------------------------
+Timestamp: 1689491193
+
+Sender: Ram
+Receiver: Sita
+Amount: 1000.000000
+
+Sender: Naruto
+Receiver: Hinata
+Amount: 4500.000000
+
+Previous Hash: 572d4f397483c4bd
+Hash: 659fae22fb1b4c98
+
+
+-------------------------------------------------
+Block #2
+-------------------------------------------------
+Timestamp: 1689491193
+
+Sender: Aryan
+Receiver: Karthik
+Amount: 9500.000000
+
+Sender: Alya
+Receiver: Krish
+Amount: 45000.000000
+
+Previous Hash: 659fae22fb1b4c98
+Hash: e910d5c1c8669065
+
+
+-------------------------------------------------
+Block #3
+-------------------------------------------------
+Timestamp: 1689491193
+
+Sender: Krish
+Receiver: Karthik
+Amount: 19500.000000
+
+Sender: Ram
+Receiver: Mrithi
+Amount: 4000.000000
+
+Sender: Ram
+Receiver: Mrithi
+Amount: 4000.000000
+
+Previous Hash: e910d5c1c8669065
+Hash: 37bdce5c4b4b6a4c
+
+
+-------------------------------------------------
+Is blockchain valid? Yes
+
+*/
