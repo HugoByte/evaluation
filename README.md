@@ -26,9 +26,16 @@ The Blockchain is able to record financial transactions as well as prperties, ca
 
 A simple Blockchain class is defined.
 
-1.Two essential structures are defined: Transaction and Block.
-Transaction: Represents a single transaction in the blockchain, with attributes for the sender, receiver, amount, and timestamp when the transaction occurred.
-Block: Represents a block in the blockchain, containing an index, timestamp, a vector of Transaction objects, a previous block's hash, and its own hash.
+- index: An integer to keep track of the block's position in the chain.
+- data: A string representing the data to be stored in the block.
+- timestamp: A string representing the time when the block is created.
+- previous_hash: A string representing the hash of the previous block in the chain.
+- hash: A string representing the hash of the current block. The hash is calculated based on the block's data and other properties.
+
+1. Two essential structures are defined: Transaction and Block.
+
+  Transaction: Represents a single transaction in the blockchain, with attributes for the sender, receiver, amount, and timestamp when the transaction occurred.
+  Block: Represents a block in the blockchain, containing an index, timestamp, a vector of Transaction objects, a previous block's hash, and its own hash.
 
 2. Blockchain contains a private member variable chain, which is a vector of Block objects. The constructor initializes the chain with the genesis block (block with index 0 and empty transactions).
 
