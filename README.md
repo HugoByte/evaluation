@@ -34,9 +34,9 @@ A simple Blockchain class is defined.
 
 1. Two essential structures are defined: Transaction and Block.
 
-    Transaction: Represents a single transaction in the blockchain, with attributes for the sender, receiver, amount, and timestamp when the transaction occurred.
+    <u>Transaction</u>: Represents a single transaction in the blockchain, with attributes for the sender, receiver, amount, and timestamp when the transaction occurred.
   
-    Block: Represents a block in the blockchain, containing an index, timestamp, a vector of Transaction objects, a previous block's hash, and its own hash.
+    <u>Block</u>: Represents a block in the blockchain, containing an index, timestamp, a vector of Transaction objects, a previous block's hash, and its own hash.
 
 2. Blockchain contains a private member variable chain, which is a vector of Block objects. The constructor initializes the chain with the genesis block (block with index 0 and empty transactions).
 
