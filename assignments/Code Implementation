@@ -1,4 +1,4 @@
-#include <iostream>
+ #include <iostream>
 #include <string>
 #include <vector>
 #include <ctime>
@@ -39,7 +39,6 @@ struct Block {
 
         stringstream ss;
         ss << hex << hashValue;
-        //cout << ss.str();
         return ss.str();
     }
 };
@@ -47,6 +46,7 @@ struct Block {
 class Blockchain {
 private:
     vector<Block> chain;
+    vector<Transaction> transact;
 
 public:
     Blockchain() {
@@ -64,6 +64,23 @@ public:
         string previousHash = previousBlock.hash;
         Block newBlock(newIndex, transactions, previousHash);
         chain.push_back(newBlock);
+    }
+    
+    void displayChain() {
+        for (const auto& block : chain) {
+            cout << "Block #" << block.index << endl;
+            cout << "Timestamp: " << block.timestamp << endl;
+            cout << "Previous Hash: " << block.previousHash << endl;
+            cout << "Hash: " << block.hash << endl;
+            cout << endl;
+        }
+        for (const auto& trans : transact) {
+            cout << "Sender: " << trans.sender << endl;
+            cout << "Receiver: " << trans.receiver << endl;
+            cout << "Amount: " << trans.amount << endl;
+            cout << endl;
+        }
+        
     }
 
     bool validateChain() {
@@ -86,18 +103,28 @@ public:
 int main() {
     
     Blockchain blockchain;
+    
     //Block1 Transaction
     vector<Transaction> block1Transactions;
     block1Transactions.push_back(Transaction("Ram", "Sita", 1000));
-    block1Transactions.push_back(Transaction("Riya", "Roni", 50000));
     block1Transactions.push_back(Transaction("Naruto", "Hinata", 4500));
     blockchain.addBlock(block1Transactions);
+    
     //Block2 Transaction
     vector<Transaction> block2Transactions;
     block2Transactions.push_back(Transaction("Aryan", "Karthik", 9500));
     block2Transactions.push_back(Transaction("Alya", "Krish", 45000));
-    block2Transactions.push_back(Transaction("Chintu", "Kichu", 300000));
     blockchain.addBlock(block2Transactions);
+    
+    //Block3 Transaction
+    vector<Transaction> block3Transactions;
+    block3Transactions.push_back(Transaction("Krish", "Karthik", 19500));
+    block3Transactions.push_back(Transaction("Ram", "Mrithi", 4000));
+    blockchain.addBlock(block3Transactions);
+    
+    //Display Blocks
+    blockchain.displayChain();
+    
     //Validation
     bool isValid = blockchain.validateChain();
     cout << "Is blockchain valid? " << (isValid ? "Yes" : "No") << endl;
