@@ -24,6 +24,7 @@ struct Block {
     vector<Transaction> transactions;
     string previousHash;
     string hash;
+    string Data, data;
 
     Block(int _index, vector<Transaction> _transactions, string _previousHash) : index(_index), transactions(_transactions), previousHash(_previousHash) {
         timestamp = time(nullptr);
@@ -31,9 +32,12 @@ struct Block {
     }
 
     string calculateHash() {
-        string data = to_string(index) + to_string(timestamp) + previousHash;
-        for (const auto& transaction : transactions) 
+        Data = "";
+        data = to_string(index) +  to_string(timestamp) + previousHash;
+        for (const auto& transaction : transactions) {
+            Data += "Sender: " + transaction.sender + "\nReceiver: " + transaction.receiver + "\nAmount: " + to_string(transaction.amount) + "\n\n";
             data += transaction.sender + transaction.receiver + to_string(transaction.amount) + to_string(transaction.timestamp);
+        }
         
         size_t hashValue = std::hash<string>{}(data);  
 
@@ -46,7 +50,6 @@ struct Block {
 class Blockchain {
 private:
     vector<Block> chain;
-    vector<Transaction> transact;
 
 public:
     Blockchain() {
@@ -68,19 +71,15 @@ public:
     
     void displayChain() {
         for (const auto& block : chain) {
+            cout<<"-------------------------------------------------\n";
             cout << "Block #" << block.index << endl;
-            cout << "Timestamp: " << block.timestamp << endl;
+            cout<<"-------------------------------------------------\n";
+            cout << "Timestamp: " << block.timestamp << endl << endl;
+            cout << block.Data;
             cout << "Previous Hash: " << block.previousHash << endl;
             cout << "Hash: " << block.hash << endl;
-            cout << endl;
+            cout << endl << endl;
         }
-        for (const auto& trans : transact) {
-            cout << "Sender: " << trans.sender << endl;
-            cout << "Receiver: " << trans.receiver << endl;
-            cout << "Amount: " << trans.amount << endl;
-            cout << endl;
-        }
-        
     }
 
     bool validateChain() {
@@ -126,6 +125,7 @@ int main() {
     blockchain.displayChain();
     
     //Validation
+    cout<<"-------------------------------------------------\n";
     bool isValid = blockchain.validateChain();
     cout << "Is blockchain valid? " << (isValid ? "Yes" : "No") << endl;
 
