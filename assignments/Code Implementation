@@ -1,0 +1,207 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <ctime>
+#include <functional> 
+#include <sstream>
+
+using namespace std;
+
+struct Transaction {
+    string sender;
+    string receiver;
+    double amount;
+    time_t timestamp;
+
+    Transaction(string _sender, string _receiver, double _amount) : sender(_sender), receiver(_receiver), amount(_amount) {
+        timestamp = time(nullptr);
+    }
+};
+
+struct Block {
+    int index;
+    time_t timestamp;
+    vector<Transaction> transactions;
+    string previousHash;
+    string hash;
+    string Data, data;
+
+    Block(int _index, vector<Transaction> _transactions, string _previousHash) : index(_index), transactions(_transactions), previousHash(_previousHash) {
+        timestamp = time(nullptr);
+        hash = calculateHash();
+    }
+
+    string calculateHash() {
+        Data = "";
+        data = to_string(index) +  to_string(timestamp) + previousHash;
+        for (const auto& transaction : transactions) {
+            Data += "Sender: " + transaction.sender + "\nReceiver: " + transaction.receiver + "\nAmount: " + to_string(transaction.amount) + "\n\n";
+            data += transaction.sender + transaction.receiver + to_string(transaction.amount) + to_string(transaction.timestamp);
+        }
+        
+        size_t hashValue = std::hash<string>{}(data);  
+
+        stringstream ss;
+        ss << hex << hashValue;
+        return ss.str();
+    }
+};
+
+class Blockchain {
+private:
+    vector<Block> chain;
+
+public:
+    Blockchain() {
+        chain.push_back(createGenesisBlock());
+    }
+
+    Block createGenesisBlock() {
+        vector<Transaction> transactions;
+        return Block(0, transactions, "0");
+    }
+
+    void addBlock(vector<Transaction> transactions) {
+        Block previousBlock = chain.back();
+        int newIndex = previousBlock.index + 1;
+        string previousHash = previousBlock.hash;
+        Block newBlock(newIndex, transactions, previousHash);
+        chain.push_back(newBlock);
+    }
+    
+    void displayChain() {
+        for (const auto& block : chain) {
+            cout<<"-------------------------------------------------\n";
+            cout << "Block #" << block.index << endl;
+            cout<<"-------------------------------------------------\n";
+            cout << "Timestamp: " << block.timestamp << endl << endl;
+            cout << block.Data;
+            cout << "Previous Hash: " << block.previousHash << endl;
+            cout << "Hash: " << block.hash << endl;
+            cout << endl << endl;
+        }
+    }
+
+    bool validateChain() {
+        for (int i = 1; i < chain.size(); i++) {
+            Block currentBlock = chain[i];
+            Block previousBlock = chain[i - 1];
+            
+            if (currentBlock.hash != currentBlock.calculateHash()) {
+                return false;
+            }
+
+            if (currentBlock.previousHash != previousBlock.hash) {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+int main() {
+    
+    Blockchain blockchain;
+    
+    //Block1 Transaction
+    vector<Transaction> block1Transactions;
+    block1Transactions.push_back(Transaction("Ram", "Sita", 1000));
+    block1Transactions.push_back(Transaction("Naruto", "Hinata", 4500));
+    blockchain.addBlock(block1Transactions);
+    
+    //Block2 Transaction
+    vector<Transaction> block2Transactions;
+    block2Transactions.push_back(Transaction("Aryan", "Karthik", 9500));
+    block2Transactions.push_back(Transaction("Alya", "Krish", 45000));
+    blockchain.addBlock(block2Transactions);
+    
+    //Block3 Transaction
+    vector<Transaction> block3Transactions;
+    block3Transactions.push_back(Transaction("Krish", "Karthik", 19500));
+    block3Transactions.push_back(Transaction("Ram", "Mrithi", 4000));
+    blockchain.addBlock(block3Transactions);
+    
+    //Display Blocks
+    blockchain.displayChain();
+    
+    //Validation
+    cout<<"-------------------------------------------------\n";
+    bool isValid = blockchain.validateChain();
+    cout << "Is blockchain valid? " << (isValid ? "Yes" : "No") << endl;
+
+    return 0;
+}
+
+
+/*
+
+OUTPUT:
+
+-------------------------------------------------
+Block #0
+-------------------------------------------------
+Timestamp: 1689491193
+
+Previous Hash: 0
+Hash: 572d4f397483c4bd
+
+
+-------------------------------------------------
+Block #1
+-------------------------------------------------
+Timestamp: 1689491193
+
+Sender: Ram
+Receiver: Sita
+Amount: 1000.000000
+
+Sender: Naruto
+Receiver: Hinata
+Amount: 4500.000000
+
+Previous Hash: 572d4f397483c4bd
+Hash: 659fae22fb1b4c98
+
+
+-------------------------------------------------
+Block #2
+-------------------------------------------------
+Timestamp: 1689491193
+
+Sender: Aryan
+Receiver: Karthik
+Amount: 9500.000000
+
+Sender: Alya
+Receiver: Krish
+Amount: 45000.000000
+
+Previous Hash: 659fae22fb1b4c98
+Hash: e910d5c1c8669065
+
+
+-------------------------------------------------
+Block #3
+-------------------------------------------------
+Timestamp: 1689491193
+
+Sender: Krish
+Receiver: Karthik
+Amount: 19500.000000
+
+Sender: Ram
+Receiver: Mrithi
+Amount: 4000.000000
+
+Sender: Ram
+Receiver: Mrithi
+Amount: 4000.000000
+
+Previous Hash: e910d5c1c8669065
+Hash: 37bdce5c4b4b6a4c
+
+
+-------------------------------------------------
+Is blockchain valid? Yes
+
+*/
