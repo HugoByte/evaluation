@@ -1,0 +1,24 @@
+﻿A Report On 
+Security implications of using a Blockchain for Financial Transactions
+By Riya Singh
+
+
+A blockchain can be defined as a digital ledger of transactions which is decentralised, secure and transparent. It uses cryptography to ensure the security of each block and link them together. The numerous advantages that come with using blockchain have led to a rise in their applications making them an extensively popular choice in a lot of real-world business scenarios like financial transactions, cryptocurrencies, supply chain management, NFTs, smart contracts, real estate and more.
+
+
+There are a lot of security implications in case of using blockchain financial transactions and here are a few cases discussed in detail below:
+
+
+1. Access to Blockchain: There are several types of blockchain which define who can have what type of access to a particular chain. For example, public blockchain, which allows anyone to join and validate transactions, or private blockchain, which can be limited to a particular business transaction. However, since a blockchain tends to be transparent, it can also aid in leaking sensitive information and allow cyberattackers to analyse the blockchain and put the identity of the parties involved at risk.
+2. 51% attacks: Blockchains require a lot of computing power, and if an attacker gains more than 50% of resources to the blockchain, then they will have the ability to manipulate the ledger and control it.
+3. Private Key theft: A private key plays an important role in the blockchain cryptography algorithm. A theft of private keys has resulted in a loss of 73 million USD worth of Bitcoin in the past. It is very important to keep the private key confidential in order to avoid unauthorised access and theft of data or money. 
+4. Hacking: A blockchain can also be put at risk even if an employee computer is hacked. It is crucial to make sure that only an employee with proper authorization and authentication can gain access to a blockchain. 
+5. Sybil attacks: A sybil attack occurs when a hacker generates various fake networks to gain majority consensus of the blockchain and manipulate it. It is like the 51% attack.
+6. Phishing attacks: A phishing attack involves sending fake emails to customers to steal their credentials. The emails are portrayed as extremely realistic and prompt them to enter sensitive data on fake hyperlinks. Once the data is entered, the hackers already have access to this sensitive information.
+7. Routing attacks: A routing attack works such that a user believes everything is working as normal; however, this attack causes the data to be exposed to the hackers during the transmission. 
+8. Blockchain Endpoint Vulnerabilities: The blockchain is usually accessed by the customers via an endpoint device like mobile or laptops. The hackers can gain access to these devices to gain control over the blockchain or uncover sensitive data like passwords or private keys.
+9. Scalability: As demand increases, the need for scalability arises. However, increase in the users for the network requires higher computing power. This can cause network congestion and lead to bottleneck issues. 
+10. Smart Contracts: A smart contract is a self-executing contract that ensures the agreement of terms and conditions set in prior. However, these contracts can have flaws which can be exploited to steal data and money. 
+
+
+There are probably more security implications that need to be kept in mind when creating a blockchain. However, most of these can be overcome with proper research, caution and testing. It is also necessary to understand and be aware of the security risks posed by using a blockchain. Being aware of the threats can help us overcome them and take action before it is too late.
